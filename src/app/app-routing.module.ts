@@ -20,7 +20,7 @@ export const APP_ROUTES: Routes = [
         canDeactivate: [AuthGuard],
         component: UserEditComponent
       },
-      { path: ":id", component: UserComponent }
+      { path: ":id", data: { title: "User list" }, component: UserComponent }
     ]
   },
   { path: "**", redirectTo: "" }
