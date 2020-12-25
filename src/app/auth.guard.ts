@@ -4,13 +4,19 @@ import {
   CanActivate,
   CanActivateChild,
   CanDeactivate,
+  Resolve,
   RouterStateSnapshot
 } from "@angular/router";
 import { UserEditComponent } from "./user-edit/user-edit.component";
+import { User } from "./users/users.component";
 
 @Injectable({ providedIn: "root" })
 export class AuthGuard
-  implements CanActivate, CanActivateChild, CanDeactivate<UserEditComponent> {
+  implements
+    CanActivate,
+    CanActivateChild,
+    CanDeactivate<UserEditComponent>,
+    Resolve<User> {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -32,5 +38,13 @@ export class AuthGuard
     state: RouterStateSnapshot
   ) {
     return component.canDeactivate();
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): User {
+    const userId = route.paramMap.get("id");
+    return {
+      id: 5,
+      name: "Julie"
+    };
   }
 }
