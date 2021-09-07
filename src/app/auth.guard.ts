@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -6,11 +6,11 @@ import {
   CanDeactivate,
   Resolve,
   RouterStateSnapshot
-} from "@angular/router";
-import { UserEditComponent } from "./user-edit/user-edit.component";
-import { User } from "./users/users.component";
+} from '@angular/router';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { User } from './users/users.component';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class AuthGuard
   implements
     CanActivate,
@@ -41,10 +41,10 @@ export class AuthGuard
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): User {
-    const userId = route.paramMap.get("id");
+    const userId = Number(route.paramMap.get('id'));
     return {
       id: 5,
-      name: "Julie"
+      name: 'Julie'
     };
   }
 }
