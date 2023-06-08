@@ -5,6 +5,7 @@ import { authGuard, authGuardChild } from './auth.guard';
 import { formUserGuard } from './form-user.guard';
 import { HomepageComponent } from './homepage/homepage.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { userResolver } from './user.resolver';
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users/users.component';
 
@@ -21,7 +22,14 @@ export const APP_ROUTES: Routes = [
         canDeactivate: [formUserGuard],
         component: UserEditComponent,
       },
-      { path: ':id', component: UserComponent },
+      {
+        path: ':id',
+        data: { title: 'Page utilisateur' },
+        resolve: {
+          user: userResolver,
+        },
+        component: UserComponent,
+      },
     ],
   },
   { path: '**', redirectTo: '' },

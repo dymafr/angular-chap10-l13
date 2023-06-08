@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { User } from './user.resolver';
 
 @Injectable({
   providedIn: 'root',
@@ -9,5 +10,12 @@ export class AuthService {
 
   public isLoggedIn() {
     return of(true);
+  }
+
+  public getUser(userId: string): Observable<User> {
+    return of({
+      id: '12',
+      name: 'Jean',
+    });
   }
 }
