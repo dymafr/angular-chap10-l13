@@ -7,7 +7,8 @@ export interface User {
   name: string;
 }
 
-export const userResolver: ResolveFn<User> = () => {
+export const userResolver: ResolveFn<User> = (activatedRoute) => {
+  const userId = activatedRoute.paramMap.get('id')!;
   const authService = inject(AuthService);
-  return authService.getUser('12');
+  return authService.getUser(userId);
 };
