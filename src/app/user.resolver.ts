@@ -9,6 +9,7 @@ export interface User {
 
 export const userResolver: ResolveFn<User> = (activatedRoute) => {
   const userId = activatedRoute.paramMap.get('id')!;
+  console.log(userId);
   const authService = inject(AuthService);
   return authService.getUser(userId);
 };
